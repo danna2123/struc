@@ -21,10 +21,6 @@ int main(){
 	NodoCD * cab=NULL;
 	
 	ingresar_datos(cab);
-	insertar_cabeza(cab,"juan");
-	insertar_cabeza(cab,"pedro");
-	insertar_cabeza(cab,"ana");
-	insertar_cabeza(cab,"maria");
 	imprimir(cab);
 	cout<<buscar(cab,"ana")->cad<<endl;
 	
@@ -70,19 +66,25 @@ NodoCD *buscar(NodoCD *cab, char dato[20]){
 void ingresar_datos(NodoCD *&cab){
 	NodoCD *aux = cab;
 	int n;
-	char nombre;
-	cout<<"ingrese la cantidad de jugadores"<<endl;cin>>n;
- 	for(int i=0;i<n;i++){
- 		cout<<"ingrese el nombre del jugador"<<endl;cin>>nombre;
- 		cab = crear_nodo(NULL,nombre,aux->sig);
-	 }
-	imprimir(cab);	 
+	cout<<"ingrese la cantidad de jugadores: ";
+    cin>>n;
+    if(n>=1 && n<=12){
+
+	 	for(int i=0;i<n;i++){
+		    char nombre[20];
+	 		cout<<"ingrese el nombre del jugador: ";
+	        cin>>nombre;
+	 		insertar_cabeza(cab,nombre);
+	    }
+	}else{
+		cout<<"numero de jugadores no permitidos ";
+	}
 }
 
 void imprimir(NodoCD *cab){
 	NodoCD *aux = cab->ant;
 	while(aux!=cab){
-		cout << "[" << aux->cad << "]"<<endl;
+		cout << "[" << aux->cad << "]-> ";
         aux = aux->ant;
 	}
 	if(aux==cab){
