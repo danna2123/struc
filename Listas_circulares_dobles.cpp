@@ -22,7 +22,7 @@ int main(){
 	
 	ingresar_datos(cab);
 	imprimir(cab);
-	cout<<buscar(cab,"ana")->cad<<endl;
+	cout<<buscar(cab,dato)->cad<<endl;
 	
 	return 0;
 }
@@ -76,6 +76,11 @@ void ingresar_datos(NodoCD *&cab){
 	        cin>>nombre;
 	 		insertar_cabeza(cab,nombre);
 	    }
+	    if(n<7){
+	 			cout<<"Se jugara con un dado"<<endl;
+			 }else{
+			 	cout<<"Se jugara con dos dados"<<endl;
+			 }
 	}else{
 		cout<<"numero de jugadores no permitidos ";
 	}
