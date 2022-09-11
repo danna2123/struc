@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ int main(){
 	
 	ingresar_datos(cab);
 	imprimir(cab);
-	cout<<buscar(cab,dato)->cad<<endl;
+	cout<<buscar(cab,"ana")->cad<<endl;
 	
 	return 0;
 }
@@ -75,12 +76,21 @@ void ingresar_datos(NodoCD *&cab){
 	 		cout<<"ingrese el nombre del jugador: ";
 	        cin>>nombre;
 	 		insertar_cabeza(cab,nombre);
+	 		//cout<<"El jugador en inciar es: "buscar(cab,"aletorio")->cad<<endl;
 	    }
 	    if(n<7){
-	 			cout<<"Se jugara con un dado"<<endl;
-			 }else{
-			 	cout<<"Se jugara con dos dados"<<endl;
-			 }
+	 		cout<<"Se jugara con un dado"<<endl;
+	 	    srand(time(NULL));
+			int dado;
+			dado = rand()%6;
+			cout<<"Usted debe moverse "<<dado<<" pocisiones"<<endl;
+		}else{
+			cout<<"Se jugara con dos dados"<<endl;
+			int dado1, dado2;
+			dado1 = rand()%6;
+			dado2 = rand()%6;
+			cout<<"Usted debe moverse "<<dado2+dado1<<" pocisiones"<<endl;
+		}
 	}else{
 		cout<<"numero de jugadores no permitidos ";
 	}
