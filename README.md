@@ -1,2 +1,7 @@
 # struc
-puedes encontratar programas de c++ en base a la estructura de datos
+estructura de datos con c++
+puedes encontrar: 
+listas: simples, dobles y circulares.
+punteros 
+funciones 
+estruturas
