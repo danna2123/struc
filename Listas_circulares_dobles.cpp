@@ -1,3 +1,5 @@
+/*Lauren Dayanna González Cárdenas 2020114016
+Danna Lozano Caselles 2022214106*/
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
@@ -14,10 +16,11 @@ typedef struct Nodo{
 NodoCD* crear_nodo(NodoCD *a, char dato[20], NodoCD *s);
 void insertar_cabeza(NodoCD *&cab, char dato[20]);
 void imprimir(NodoCD *cab);
-NodoCD *buscar(NodoCD *cab, char dato[20]);
+NodoCD *buscar(NodoCD *cab, int pos);
 void ingresar_datos(NodoCD *&cab);
 void limpiar_pantalla();
-void eliminar(NodoCD *&cab, char dato);
+void eliminar(NodoCD *&cab, char pos);
+void Numero_aleatorio();
 
 int main(){
 	
@@ -51,17 +54,13 @@ void insertar_cabeza(NodoCD *&cab, char dato[20]){
     cab = aux;
 }
 
-NodoCD *buscar(NodoCD *cab, char dato[20]){
+NodoCD *buscar(NodoCD *cab, int pos){
+	NodoCD *aux = cab;
 	if(cab != NULL){
-		NodoCD *aux = cab;
-		do{
-			if(strcmp(aux->cad,dato)==0){
-				return aux;
-			}
+		for(int i=1; i<pos; i++)
 			aux=aux->sig;
-		}while(aux!=cab);
 	}
-	return NULL;
+	return aux;
 }
 
 void ingresar_datos(NodoCD *&cab){
@@ -80,29 +79,33 @@ void ingresar_datos(NodoCD *&cab){
 	    limpiar_pantalla();
 	    cout<<"Estos son los jugadores: ";
 	    imprimir(cab); 
-	    cout<<"El jugador que incia es: "<<buscar(cab,"ana")->cad<<endl;
+	    cout<<"El jugador que incia es: "<<buscar(cab, 2)->cad<<endl;
 	    imprimir(cab);
 		    if(n<7){
 		 		cout<<"Se jugara con un dado"<<endl;
 		 		for(int i=0;i<6;i++){
-			 	    srand(time(NULL));
-					int dado;
-					dado = rand()%6;
-					cout<<"Usted debe moverse "<<dado<<" pocisiones"<<endl;
+			 	    int dado = Numero_aleatorio();
+					cout<<"Usted debe moverse "<<dado<<"posicion"<<endl;
 				}
 			}else{
 				cout<<"Se jugara con dos dados"<<endl;
-				int dado1, dado2;
-				dado1 = rand()%6;
-				dado2 = rand()%6;
-				cout<<"Usted debe moverse "<<dado2+dado1<<" pocisiones"<<endl;
+				Numero_aleatorio();
+				cout<<"Usted debe moverse "<<Numero_aleatorio()<<" pocisiones"<<endl;
 			}
 	}else{
 		cout<<"numero de jugadores no permitidos ";
 	}
 }
 
-void eliminar(NodoCD *&cab, NodoCD* nodo_eliminar){
+void Numero_aleatorio(){
+	srand(time(NULL));
+	int dado;
+	dado = rand()%6;
+	return dado;
+}
+
+void eliminar(NodoCD *&cab, int pos){
+	NodoCD* nodo_eliminar = buscar(cabecera, pos);
 	 if (nodo_eliminar  != NULL){
         if(nodo_eliminar == cab && nodo_eliminar->sig == cab){
             cab = NULL;
