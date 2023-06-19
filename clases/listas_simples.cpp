@@ -12,8 +12,8 @@ Nodo *crearNodo(int dato, Nodo* sgt);
 Nodo *buscar(Nodo *cab, int dato);
 void insertar_cab(Nodo *&cab, int dato);
 void insertar_cola(Nodo *&cab, int dato);
-void insertar_desp(Nodo *&cab, int di, int db);
 void insertar_antes(Nodo *&cab, int di, int db);
+void eliminar(Nodo *&cab int dato);
 void imprimir(Nodo *p);
 
 int main (){
@@ -42,8 +42,6 @@ Nodo *crearNodo(int dato, Nodo* sgt){
 	return nuevo_nodo;
 }
 
-
-
 void insertar_cab(Nodo *&cab, int dato){
 	Nodo *p = crearNodo(dato, cab);
 	cab = p;
@@ -71,7 +69,7 @@ void insertar_cola(Nodo *&cab, int dato){
 	}
 }
 
-void insertar_desp(Nodo *&cab, int di, int db){
+void insertar_desp(Nodo *cab, int di, int db){
 	Nodo *p = buscar(cab,db);
 	if(p != NULL){
 		Nodo *q = crearNodo(di,NULL);
@@ -98,6 +96,19 @@ void insertar_antes(Nodo *&cab, int di, int db){
 	}else{
 		cab=crearNodo(di,cab);
 	}
+}
+
+void eliminar(Nodo *&cab int dato){
+	Nodo *p= buscar(cad, dato);
+	if(p!=NULL){
+		if(p->ant==NULL){
+			cab=cab->sgt;
+		}else{
+			p->ant->sgt=p->sgt;
+		}
+		if(p->sgt->ant=p->ant);
+		delete(p);
+	}	
 }
 
 Nodo * buscar(Nodo *cab, int dato){
